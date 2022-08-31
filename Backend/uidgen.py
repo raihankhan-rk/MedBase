@@ -9,5 +9,3 @@ def genrateuid():
     uid = now[0:12]
 
     return uid
-
-genrateuid()
