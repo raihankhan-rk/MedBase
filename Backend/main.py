@@ -1,12 +1,40 @@
 from database import *
+from upload import UploadFile
 
 db = Database.initializedatabase()
+collection = db.collection('Patient Details')
 
-collection = db.collection('programmer_details')
-res = collection.document('8961675822').set({  # insert document
-    'name': 'Raihan',
-    'age': 19,
-    'Country': 'India',
-    'Programming_languages': ['Python', 'C#', 'C++']
-})
-print(res)
+
+def createUser(uid, name, age, phone, cid=None):
+    if cid is None:
+        cid = []
+    res = collection.document(uid).set({  # insert document
+        'name': name,
+        'age': age,
+        'phone': phone,
+        'CID': cid,
+    })
+
+
+def upload():
+    return UploadFile.uploadFile()
+
+
+def update(metadata, uid):
+    patientData = collection.document(uid).get().to_dict()
+    cid = patientData["CID"]
+    cid.append(metadata["IpfsHash"])
+    collection.document(uid).update({  # insert document
+        'CID': cid,
+    })
+    patientData = collection.document(uid).get().to_dict()
+    print(patientData)
+
+
+createUser(uid="9330266945",
+           name="Risavdeb Patra",
+           age=19,
+           phone="9330266945"),
+
+update(uid="9330266945",
+       metadata=upload(), )
