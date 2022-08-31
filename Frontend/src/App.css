@@ -1,0 +1,130 @@
+body{
+  /* background-color: rgb(209, 227, 231); */
+  background: rgb(83,155,201);
+  background: linear-gradient(3deg, rgba(83,155,201,1) 0%, rgba(149,198,205,1) 50%, rgba(193,244,255,1) 100%);
+}
+
+.App {
+  background-color: white;
+}
+
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Auth-form {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+/* <-------------------------------------OTP CSS-----------------------------------------> */
+.timer{
+  color: red;
+}
+
+
+/* <----------------------------------DASHBOARD CSS--------------------------------------> */
+
+/* The actual timeline (the vertical ruler) */
+.heading_dashboard{
+  color: rgb(13, 58, 100);
+}
+
+.buttonStyle{
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.main-timeline-5 {
+  position: relative;
+  max-width: 50%;
+  margin: 0 auto;
+  }
+  
+  /* The actual timeline (the vertical ruler) */
+  .main-timeline-5::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background-color: #fff;
+  top: 0;
+  bottom: 0;
+  left: auto;
+  margin-left: -3px;
+  }
+  
+  /* Container around content */
+  .timeline-5 {
+  position: relative;
+  background-color: inherit;
+  width: 100%;
+  }
+  
+  /* The circles on the timeline */
+  .timeline-5::after {
+  content: '';
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  right: 1px;
+  background-color: #fff;
+  top: 18px;
+  border-radius: 50%;
+  z-index: 1;
+  }
+  
+  /* Place the container to the right */
+  .right-5 {
+  padding: 0px 0px 20px 40px;
+  left: auto;
+  }
+  
+  /* Add arrows to the right container (pointing left) */
+  .right-5::before {
+  content: " ";
+  position: absolute;
+  top: 18px;
+  z-index: 1;
+  left: 30px;
+  border: medium solid #fff;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #fff transparent transparent;
+  }
+  
+  /* Fix the circle for containers on the right side */
+  .right-5::after {
+  left: -10px;
+  }
+  
+  @media (max-width: 991px) {
+  .main-timeline-5 {
+  max-width: 100%;
+  }
+  }
