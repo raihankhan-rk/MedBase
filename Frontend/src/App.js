@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import "./App.css"
 import Auth from "./components/Auth"
-import Otp from "./components/Otp"
 import Dashboard from "./components/Dashboard"
 import NavBar from "./components/MedNav"
+import Otp from "./components/Otp"
 
 function App() {
   return (
