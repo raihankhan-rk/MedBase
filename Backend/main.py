@@ -1,19 +1,6 @@
-from database import *
-from upload import UploadFile
-
-db = Database.initializedatabase()
-collection = db.collection('Patient Details')
-
-
-def createUser(uid, name, age, phone, cid=None):
-    if cid is None:
-        cid = []
-    res = collection.document(uid).set({  # insert document
-        'name': name,
-        'age': age,
-        'phone': phone,
-        'CID': cid,
-    })
+from Backend.services.user_authentication import *
+from Backend.services.database import *
+from Backend.services.upload import UploadFile
 
 
 def upload():
@@ -31,10 +18,8 @@ def update(metadata, uid):
     print(patientData)
 
 
-createUser(uid="9330266945",
-           name="Risavdeb Patra",
-           age=19,
-           phone="9330266945"),
-
-update(uid="9330266945",
-       metadata=upload(), )
+db = Database.initializedatabase()
+collection = db.collection('Patient Details')
+# signup("8961675822", "+918961675822", "sonsofkhan", "Raihan Khan", "19", db)
+signin("+918961675822", "sonsofkhan")
+# update(upload(), "8961675822")
