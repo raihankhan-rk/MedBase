@@ -15,9 +15,9 @@ function App() {
       <BrowserRouter>
           <NavBar/>
           <Switch>
-            <Route path="/auth"><Auth/></Route>
-            <Route path="/otp"><Otp/></Route>
-            <Route path="/dashboard"><Dashboard/></Route>
+            <Route exact path="/auth"><Auth/></Route>
+            <Route exact path="/otp"><Otp/></Route>
+            <Route exact path="/dashboard"><Dashboard/></Route>
             <Route exact path="/"><Auth/></Route>
           </Switch>
         </BrowserRouter>
