@@ -12,7 +12,7 @@ export default function Dashboard() {
           <table className="table table-hover table-responsive table-light rounded-2">
             <thead>
               <tr>
-                <th scope="col">No.</th>
+                <th scope="col">Id.</th>
                 <th scope="col" style={{textAlign:"center"}}>File Name</th>
                 <th scope="col" style={{textAlign:"center"}}>Upload Date</th>
                 <th scope="col"></th>
