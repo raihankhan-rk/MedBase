@@ -1,6 +1,7 @@
 body{
   /* background-color: rgb(209, 227, 231); */
-  background: rgb(83,155,201);
+  /* background: rgb(83,155,201); */
+  background-repeat: none;
   background: linear-gradient(3deg, rgba(83,155,201,1) 0%, rgba(149,198,205,1) 50%, rgba(193,244,255,1) 100%);
 }
 
@@ -127,4 +128,12 @@ label {
   .main-timeline-5 {
   max-width: 100%;
   }
+  }
+
+  /*DASHBOARD BG FIX*/
+  section {
+    height: 100vh;
+    padding: 80px 0;
+    overflow: hidden;
+    background-size: cover;
   }

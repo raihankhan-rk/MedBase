@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 export default function MedNav() {
   return (
-    <Navbar bg="light" expand="lg" variant='light'>
+    <Navbar bg="light" fixed="top" expand="lg" variant='light'>
       <Container fluid>
         <Navbar.Brand href="#">MedBase</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
