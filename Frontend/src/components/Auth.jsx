@@ -3,6 +3,25 @@ import { Link } from "react-router-dom"
 
 export default function Auth(props) {
     let [authMode, setAuthMode] = useState("signin")
+    const [name, setName] = useState('')
+    const [aadhar, setAadhar] = useState('')
+    const [phone, setPhone] = useState('')
+
+    async function registerUser(){
+        const response = await fetch('http://localhost:1337/api/register', {
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body: JSON.stringify({
+                name,
+                aadhar,
+                phone,
+            }),
+        })
+
+        const data = await response.json()
+        console.log(data);
+    }
 
     const changeAuthMode = () => {
         setAuthMode(authMode === "signin" ? "signup" : "signin")
@@ -43,7 +62,7 @@ export default function Auth(props) {
 
     return (
         <div className="Auth-form-container">
-            <form className="Auth-form shadow-lg p-3 mb-5 bg-white rounded">
+            <form className="Auth-form shadow-lg p-3 mb-5 bg-white rounded" onSubmit={registerUser}>
                 <div className="Auth-form-content">
                     <h3 className="Auth-form-title">Sign Up</h3>
                     <div className="text-center">
@@ -55,6 +74,8 @@ export default function Auth(props) {
                     <div className="form-group mt-3">
                         <label>Full Name</label>
                         <input
+                            value={name}
+                            onChange={(e)=>setName(e.target.value)}
                             type="text"
                             className="form-control mt-1"
                             placeholder="Your Name"
@@ -63,6 +84,8 @@ export default function Auth(props) {
                     <div className="form-group mt-3">
                         <label>Aadhar Number</label>
                         <input
+                            value={aadhar}
+                            onChange={(e)=>setAadhar(e.target.value)}
                             type="text"
                             className="form-control mt-1"
                             placeholder="XXXX-XXXX-XXXX"
@@ -71,6 +94,8 @@ export default function Auth(props) {
                     <div className="form-group mt-3">
                             <label>Phone Number</label>
                             <input
+                                value={phone}
+                                onChange={(e)=>setPhone(e.target.value)}
                                 type="number"
                                 className="form-control mt-1"
                                 placeholder="Enter phone number"
@@ -83,9 +108,6 @@ export default function Auth(props) {
                             </button>
                         </Link>
                     </div>
-                    <p className="text-center mt-2">
-                        Forgot <a href="//">password?</a>
-                    </p>
                 </div>
             </form>
         </div>
