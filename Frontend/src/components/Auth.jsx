@@ -11,7 +11,7 @@ export default function Auth(props) {
     if (authMode === "signin") {
         return (
             <div className="Auth-form-container">
-                <form className="Auth-form shadow-lg p-3 mb-5 bg-white rounded">
+                <form className="Auth-form shadow-lg p-3 my-5 bg-white rounded">
                     <div className="Auth-form-content">
                         <h3 className="Auth-form-title">Sign In</h3>
                         <div className="text-center">
@@ -43,7 +43,7 @@ export default function Auth(props) {
 
     return (
         <div className="Auth-form-container">
-            <form className="Auth-form shadow-lg p-3 mb-5 bg-white rounded">
+            <form className="Auth-form shadow-lg p-3 my-5 bg-white rounded">
                 <div className="Auth-form-content">
                     <h3 className="Auth-form-title">Sign Up</h3>
                     <div className="text-center">
@@ -83,9 +83,6 @@ export default function Auth(props) {
                             </button>
                         </Link>
                     </div>
-                    <p className="text-center mt-2">
-                        Forgot <a href="//">password?</a>
-                    </p>
                 </div>
             </form>
         </div>
