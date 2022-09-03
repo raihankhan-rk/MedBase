@@ -11,3 +11,5 @@ class Database:
         _db = firestore.client()
 
         return _db
+
+

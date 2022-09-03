@@ -1,6 +1,6 @@
-from Backend.services.user_authentication import *
-from Backend.services.database import *
-from Backend.services.upload import UploadFile
+from Backend.user_authentication import *
+from Backend.database import *
+from Backend.upload import UploadFile
 
 
 def upload():
