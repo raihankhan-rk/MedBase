@@ -46,11 +46,6 @@ class LoginForm(FlaskForm):
     password = PasswordField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Password"})
     submit = SubmitField("Login")
 
-    def validate_email(self, email):
-        existing_user_email = User.query.filter_by(email=email.data).first()
-        if existing_user_email is None:
-            raise ValidationError("That email is not registered! Try signing up first.")
-
 
 @app.route('/')
 def home():
