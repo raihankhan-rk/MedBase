@@ -23,5 +23,8 @@ def signup(_uid, _phone_number, _password, _display_name, _age, db):
 
 
 def signin(_phone_number, _password):
-    existing_user = auth.get_user_by_phone_number(_phone_number)
-    print(existing_user)
+    try:
+        auth.get_user_by_phone_number(_phone_number)
+        print("User logged In!")
+    except:
+        print(f"No such user found with phone No. {_phone_number}")
