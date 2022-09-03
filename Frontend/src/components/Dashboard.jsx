@@ -5,7 +5,10 @@ export default function Dashboard() {
   return (
       <section>
         <div className="container">
-        <h1 className="heading_dashboard fw-bold my-4 text-center">
+        <div className="w-5 h-5 bg-white">
+          <h1>hello</h1>
+        </div>
+        <h1 className="heading_dashboard fw-bold my-4 text-left">
           Dashboard
         </h1>
         <div className="rounded-2">
@@ -14,7 +17,7 @@ export default function Dashboard() {
               <tr>
                 <th scope="col">Id.</th>
                 <th scope="col" style={{textAlign:"center"}}>File Name</th>
-                <th scope="col" style={{textAlign:"center"}}>Upload Date</th>
+                <th scope="col" style={{textAlign:"center"}}>Uploaded On</th>
                 <th scope="col"></th>
               </tr>
             </thead>
