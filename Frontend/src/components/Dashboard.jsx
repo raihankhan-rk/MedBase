@@ -5,25 +5,24 @@ export default function Dashboard() {
   return (
     <section>
       <div className="container">
-          <div className="row justify-content-center align-items-center">
-            <form className="Auth-form shadow-lg p-3 my-5 bg-white rounded">
-              <div className="Auth-form-content">
-                <h3 className="Auth-form-title">MedBase Profile</h3>
-                <div className="form-group mt-3 row justify-content-center align-items-center">
-                  <label className="Auth-form-title text-center">UID: 4512-4876-8954</label>
-                  <label>Name: SAYAK SARKAR</label>
-                </div>
-                <div className="d-grid gap-2 mt-3">
-                </div>
-              </div>
-            </form>
-          </div>
-        <h1 className="heading_dashboard fw-bold my-4 text-left">Dashboard</h1>
-        <div className="rounded-2">
+        <h1 className="heading_dashboard fw-bold my-4 text-center">
+          Dashboard
+        </h1>
+        <div className="row justify-content-center align-items-center position-float">
+            <div class="dash-card green">
+              <h1>Profile</h1>
+              
+            </div>
+        </div>
+        <div
+          className="tableBox"
+          style={{ height: "50px",borderRadius:"15px 15px 0px 0px", background: "#f8f9fa" }}
+        ></div>
+        <div className="tab mb-5">
           <table className="table table-hover table-responsive table-light rounded-2">
             <thead>
               <tr>
-                <th scope="col">Id.</th>
+                <th scope="col" style={{ textAlign: "center" }}>Id.</th>
                 <th scope="col" style={{ textAlign: "center" }}>
                   File Name
                 </th>
@@ -37,7 +36,7 @@ export default function Dashboard() {
               {Data.map((data) => {
                 return (
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row" style={{ textAlign: "center" }}>{data.id}</th>
                     <td style={{ textAlign: "center" }}>{data.title}</td>
                     <td
                       className="small text-muted"
