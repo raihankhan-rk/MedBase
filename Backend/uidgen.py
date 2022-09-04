@@ -1,7 +1,7 @@
 from datetime import datetime
 import random
 
-def genrateuid():
+def generateuid():
     now = str(datetime.now())
     now = now.replace("-", "")
     now = now.replace(":", "")

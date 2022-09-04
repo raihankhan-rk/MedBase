@@ -1,16 +1,20 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, login_required, current_user, logout_user
 from flask_wtf import FlaskForm
 from wtforms import EmailField, PasswordField, SubmitField, StringField
 from wtforms.validators import ValidationError, InputRequired, Length, Email
 from flask_bcrypt import Bcrypt
+from uidgen import generateuid
+from werkzeug.utils import secure_filename
+from ipfs import Ipfs
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = 'MedBaseSecretKey'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['UPLOAD_FOLDER'] = 'Backend/static'
 bcrypt = Bcrypt(app)
 
 
@@ -25,10 +29,13 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    uid = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(250), nullable=False)
     email = db.Column(db.String(), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
+    cid = db.Column(db.String(), nullable=True)
 
+db.create_all()
 
 class RegistrationForm(FlaskForm):
     name = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Name"})
@@ -54,7 +61,9 @@ def home():
 @app.route('/dashboard', methods=["GET", "POST"])
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    # cid = current_user.cid.split(' ')
+    cids = ["hello", "world", "this", "is", "a", "test", "list"]
+    return render_template('dashboard.html', cids=cids)
 
 @app.route('/logout', methods=["GET", "POST"])
 @login_required
@@ -71,7 +80,6 @@ def login():
 
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        print(user)
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
@@ -93,12 +101,32 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(name=form.name.data, email=form.email.data, password=hashed_password)
+        new_user = User(name=form.name.data, email=form.email.data, password=hashed_password, uid=generateuid())
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
 
     return render_template('register.html', form=form)
+
+@app.route('/upload', methods=["GET", "POST"])
+@login_required
+def upload_file():
+
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file:
+            filename = secure_filename(file.filename)
+            file.save(f"uploads/{filename}")
+            response = Ipfs.pinToIpfs(f"uploads/{filename}")
+            return "<h1>File Uploaded to IPFS Successfully"
+    return render_template('upload.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

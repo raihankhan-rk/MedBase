@@ -2,15 +2,15 @@ import requests
 from Backend.util.pinata import *
 
 
-class UploadFile:
+class Ipfs:
     @staticmethod
-    def uploadFile():
+    def pinToIpfs(path):
         headers = {
             "pinata_api_key": API_KEY,
             "pinata_secret_api_key": API_SECRET,
         }
 
-        with open("/Users/aritrar/Pictures/wallpaper.jpg", 'rb') as file:
+        with open(path, 'rb') as file:
             files = {"file": file.read()}
             resp = requests.post(ENDPOINT, headers=headers, files=files)
 
