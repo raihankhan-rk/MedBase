@@ -17,4 +17,7 @@ class Ipfs:
         if resp.status_code == 200:
             print(f"file upload successful")
             print(f"{DWEB_GATEWAY}{resp.json()['IpfsHash']}")
+            print(resp.json())
             return resp.json()
+
+    pinToIpfs("/Users/raihankhan/PycharmProjects/MedBase/Backend/uploads/sample.pdf")

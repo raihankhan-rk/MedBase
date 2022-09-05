@@ -35,7 +35,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), nullable=False)
     cid = db.Column(db.String(), nullable=True)
 
-# db.create_all()
+db.create_all()
 
 class RegistrationForm(FlaskForm):
     name = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Name"})
@@ -61,9 +61,13 @@ def home():
 @app.route('/dashboard', methods=["GET", "POST"])
 @login_required
 def dashboard():
+    if current_user.cid is None:
+        cid = []
+    else:
+        cid = current_user.cid.split()
     # cid = current_user.cid.split(' ')
-    cids = ["hello", "world", "this", "is", "a", "test", "list"]
-    return render_template('dashboard.html', cids=cids)
+    # cids = ["hello", "world", "this", "is", "a", "test", "list"]
+    return render_template('dashboard.html', cids=cid)
 
 @app.route('/logout', methods=["GET", "POST"])
 @login_required
@@ -101,7 +105,7 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(name=form.name.data, email=form.email.data, password=hashed_password, uid=generateuid(), cid="")
+        new_user = User(name=form.name.data, email=form.email.data, password=hashed_password, uid=generateuid())
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
@@ -125,12 +129,20 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(f"uploads/{filename}")
             metadata = Ipfs.pinToIpfs(f"uploads/{filename}")
-            user_cid = current_user.cid.split(' ')
-            user_cid.append(metadata["IpfsHash"])
-            current_user.cid = ' '.join(user_cid)
-            print(current_user.cid)
-            return user_cid
-    return render_template('upload.html')
+
+            if current_user.cid is None:
+                user_cid = []
+            else:
+                user_cid = current_user.cid.split()
+
+            if metadata["IpfsHash"] in user_cid:
+                print("This file already exists in your database.")
+            else:
+                user_cid.append(metadata["IpfsHash"])
+                current_user.cid = ' '.join(user_cid)
+            db.session.commit()
+            return render_template('dashboard.html')
+    return render_template('dashboard.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
