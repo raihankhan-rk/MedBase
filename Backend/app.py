@@ -35,7 +35,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), nullable=False)
     cid = db.Column(db.String(), nullable=True)
 
-db.create_all()
+# db.create_all()
 
 class RegistrationForm(FlaskForm):
     name = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Name"})
@@ -101,7 +101,7 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(name=form.name.data, email=form.email.data, password=hashed_password, uid=generateuid())
+        new_user = User(name=form.name.data, email=form.email.data, password=hashed_password, uid=generateuid(), cid="")
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
@@ -124,8 +124,12 @@ def upload_file():
         if file:
             filename = secure_filename(file.filename)
             file.save(f"uploads/{filename}")
-            response = Ipfs.pinToIpfs(f"uploads/{filename}")
-            return "<h1>File Uploaded to IPFS Successfully"
+            metadata = Ipfs.pinToIpfs(f"uploads/{filename}")
+            user_cid = current_user.cid.split(' ')
+            user_cid.append(metadata["IpfsHash"])
+            current_user.cid = ' '.join(user_cid)
+            print(current_user.cid)
+            return user_cid
     return render_template('upload.html')
 
 if __name__ == '__main__':
