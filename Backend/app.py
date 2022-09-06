@@ -145,7 +145,7 @@ def upload_file():
             else:
                 user_cid = current_user.cid.split()
                 user_timestamp = current_user.timestamp.split()
-                user_file_title = current_user.timestamp.split()
+                user_file_title = current_user.title.split()
 
             if metadata["IpfsHash"] in user_cid:
                 print("This file already exists in your database.")
@@ -159,7 +159,7 @@ def upload_file():
                 current_user.title = ' '.join(user_file_title)
             db.session.commit()
             return redirect(url_for('dashboard'))
-    return (url_for('dashboard'))
+    return (render_template("dashboard.html"))
 
 if __name__ == '__main__':
     app.run(debug=True)
