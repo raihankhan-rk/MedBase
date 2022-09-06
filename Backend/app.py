@@ -8,6 +8,7 @@ from flask_bcrypt import Bcrypt
 from uidgen import generateuid
 from werkzeug.utils import secure_filename
 from ipfs import Ipfs
+import itertools
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -34,6 +35,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
     cid = db.Column(db.String(), nullable=True)
+    title = db.Column(db.String(), nullable=True)
+    timestamp = db.Column(db.String(), nullable=True)
 
 db.create_all()
 
@@ -63,11 +66,16 @@ def home():
 def dashboard():
     if current_user.cid is None:
         cid = []
+        timestamp = []
+        title = []
     else:
         cid = current_user.cid.split()
-    # cid = current_user.cid.split(' ')
-    # cids = ["hello", "world", "this", "is", "a", "test", "list"]
-    return render_template('dashboard.html', cids=cid)
+        title = current_user.title.split()
+        timestamp = current_user.timestamp.split()
+    uid = current_user.uid
+    name = current_user.name
+    email = current_user.email
+    return render_template('dashboard.html', cids=cid, titles=title, timestamps=timestamp, zipped_data=zip(title, timestamp, cid), name=name, email=email, uid=uid)
 
 @app.route('/logout', methods=["GET", "POST"])
 @login_required
@@ -128,21 +136,30 @@ def upload_file():
         if file:
             filename = secure_filename(file.filename)
             file.save(f"uploads/{filename}")
-            metadata = Ipfs.pinToIpfs(f"uploads/{filename}")
+            metadata, timestamp = Ipfs.pinToIpfs(f"uploads/{filename}")
 
             if current_user.cid is None:
                 user_cid = []
+                user_timestamp = []
+                user_file_title = []
             else:
                 user_cid = current_user.cid.split()
+                user_timestamp = current_user.timestamp.split()
+                user_file_title = current_user.timestamp.split()
 
             if metadata["IpfsHash"] in user_cid:
                 print("This file already exists in your database.")
+                flash("This file already exists in your database.")
             else:
                 user_cid.append(metadata["IpfsHash"])
+                user_timestamp.append(timestamp)
+                user_file_title.append(f"{filename}")
                 current_user.cid = ' '.join(user_cid)
+                current_user.timestamp = ' '.join(user_timestamp)
+                current_user.title = ' '.join(user_file_title)
             db.session.commit()
-            return render_template('dashboard.html')
-    return render_template('dashboard.html')
+            return redirect(url_for('dashboard'))
+    return (url_for('dashboard'))
 
 if __name__ == '__main__':
     app.run(debug=True)

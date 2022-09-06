@@ -15,9 +15,13 @@ class Ipfs:
             resp = requests.post(ENDPOINT, headers=headers, files=files)
 
         if resp.status_code == 200:
-            print(f"file upload successful")
-            print(f"{DWEB_GATEWAY}{resp.json()['IpfsHash']}")
-            print(resp.json())
-            return resp.json()
+            # print(f"file upload successful")
+            # print(f"{DWEB_GATEWAY}{resp.json()['IpfsHash']}")
+            # print(resp.json())
+            timestamp = resp.json()["Timestamp"]
+            timestamp = timestamp.replace("T", "-")
+            temp = timestamp.split("-")
+            date = f"{temp[2]}-{temp[1]}-{temp[0]}"
+            return resp.json(), date
 
-    pinToIpfs("/Users/raihankhan/PycharmProjects/MedBase/Backend/uploads/sample.pdf")
+    # pinToIpfs("/Users/raihankhan/PycharmProjects/MedBase/Backend/uploads/download_6.png")
