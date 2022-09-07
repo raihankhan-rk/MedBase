@@ -53,18 +53,16 @@
         <tr>
           <td>{{title}}</td>
           <td>{{timestamp}}</td>
-          <<td><button class="cid"><a href="https://dweb.link/ipfs/{{cid}}">View</a></button><button class="cid">Download</button></td>
+          <<td><button class="cid"><a href="https://dweb.link/ipfs/{{cid}}">View</a></button><button class="cid"><a href="https://dweb.link/ipfs/{{cid}}?filename={{title}}&download=true">Download</a></button></td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
   </div>
 </section>
-
   <button class="btn-4">
     <a href="{{ url_for('logout') }}" class="logout" >Logout</a>
   </button>
-
 </div>
 </body>
 

@@ -125,12 +125,12 @@ def upload_file():
 
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('No file part')
+            flash('No file selected')
             return redirect(request.url)
         file = request.files['file']
 
         if file.filename == '':
-            flash('No selected file')
+            flash('No file selected')
             return redirect(request.url)
         if file:
             filename = secure_filename(file.filename)
@@ -148,7 +148,6 @@ def upload_file():
 
             if metadata["IpfsHash"] in user_cid:
                 print("This file already exists in your database.")
-                flash("This file already exists in your database.")
             else:
                 user_cid.append(metadata["IpfsHash"])
                 user_timestamp.append(timestamp)
