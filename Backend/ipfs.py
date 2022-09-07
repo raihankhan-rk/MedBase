@@ -1,5 +1,5 @@
 import requests
-from Backend.util.pinata import *
+from util.pinata import *
 
 
 class Ipfs:
@@ -24,4 +24,4 @@ class Ipfs:
             date = f"{temp[2]}-{temp[1]}-{temp[0]}"
             return resp.json(), date
 
-    # pinToIpfs("/Users/raihankhan/PycharmProjects/MedBase/Backend/uploads/download_6.png")
+    # pinToIpfs("/Users/raihankhan/PycharmProjects/MedBase/Backend/uploads/download_9.png")

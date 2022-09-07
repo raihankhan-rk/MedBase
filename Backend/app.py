@@ -15,7 +15,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = 'MedBaseSecretKey'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['UPLOAD_FOLDER'] = 'Backend/static'
 bcrypt = Bcrypt(app)
 
 
@@ -38,7 +37,7 @@ class User(db.Model, UserMixin):
     title = db.Column(db.String(), nullable=True)
     timestamp = db.Column(db.String(), nullable=True)
 
-db.create_all()
+# db.create_all()
 
 class RegistrationForm(FlaskForm):
     name = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Name"})
@@ -159,7 +158,7 @@ def upload_file():
                 current_user.title = ' '.join(user_file_title)
             db.session.commit()
             return redirect(url_for('dashboard'))
-    return (render_template("dashboard.html"))
+    return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
     app.run(debug=True)
