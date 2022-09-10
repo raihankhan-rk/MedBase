@@ -1,5 +1,7 @@
 import requests
+
 from pinata import *
+
 
 class UploadFile:
     @staticmethod
