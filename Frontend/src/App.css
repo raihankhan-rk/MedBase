@@ -52,6 +52,15 @@ label {
 
 /* <----------------------------------DASHBOARD CSS--------------------------------------> */
 
+.user{
+  width: 80px;
+  height: auto;
+}
+
+.upload_button{
+  height: 95%;
+}
+
 .dash-card {
   width: 450px;
   box-sizing: border-box;

@@ -6,14 +6,12 @@ import "./App.css"
 import Auth from "./components/Auth"
 import Otp from "./components/Otp"
 import Dashboard from "./components/Dashboard"
-import NavBar from "./components/MedNav"
 
 function App() {
   return (
     <>
     <React.StrictMode>
       <BrowserRouter>
-          <NavBar/>
           <Switch>
             <Route exact path="/auth"><Auth/></Route>
             <Route exact path="/otp"><Otp/></Route>
