@@ -5,15 +5,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import "./App.css"
 import Auth from "./components/Auth"
 import Dashboard from "./components/Dashboard"
-import NavBar from "./components/MedNav"
 import Otp from "./components/Otp"
+
 
 function App() {
   return (
     <>
     <React.StrictMode>
       <BrowserRouter>
-          <NavBar/>
           <Switch>
             <Route exact path="/auth"><Auth/></Route>
             <Route exact path="/otp"><Otp/></Route>
