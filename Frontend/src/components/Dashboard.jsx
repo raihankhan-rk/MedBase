@@ -14,7 +14,7 @@ export default function Dashboard() {
           Dashboard
         </h1>
         <div className="row justify-content-center align-items-center position-float">
-          <div className="dash-card ridge">
+          <div className="dash-card green">
             <div className="d-flex flex-col justify-content-between">
               <h1>Test User</h1>
               <img src={User} className="user rounded flex" alt="user" />
