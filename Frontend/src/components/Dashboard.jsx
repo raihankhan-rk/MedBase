@@ -14,14 +14,13 @@ export default function Dashboard() {
           Dashboard
         </h1>
         <div className="row justify-content-center align-items-center position-float">
-          <div class="dash-card green">
+          <div className="dash-card ridge">
             <div className="d-flex flex-col justify-content-between">
-              <h1>Profile</h1>
+              <h1>Test User</h1>
               <img src={User} className="user rounded flex" alt="user" />
             </div>
-            <h4>Name: Test User</h4>
-            <h4>UID: XXXX-XXXX-XXXX-XXXX</h4>
-            <h4>Email: testuser2022@gmail.com</h4>
+            <h4 className="my-4">UID: XXXX-XXXX-XXXX</h4>
+            <h4 className="my-3">Phone: +91 9876543210</h4>
           </div>
         </div>
         <div

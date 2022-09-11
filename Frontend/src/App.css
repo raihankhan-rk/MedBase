@@ -73,6 +73,15 @@ label {
   margin-right: 1em;
 }
 
+.ridge {
+  /* background: rgb(217, 217, 217); */
+  background: rgb(33,71,91);
+background: linear-gradient(24deg, rgb(102, 172, 208) 0%, rgb(137, 176, 202), 24%, rgb(151, 214, 228) 55%, rgb(104, 172, 187) 99%);
+  border-width: 10px;
+  border-style: ridge; 
+  Border-color: white;
+  }
+
 .dash-card.grey {
   background:linear-gradient(135deg, #6aa1a9 0%,#485260 100%);
 }
