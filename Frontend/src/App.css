@@ -1,4 +1,4 @@
-body{
+body {
   /* background-color: rgb(209, 227, 231); */
   background: rgb(140, 182, 209);
   /* background-repeat: none; */
@@ -44,26 +44,27 @@ label {
   font-weight: 600;
   color: rgb(34, 34, 34);
 }
+
 /* <-------------------------------------OTP CSS-----------------------------------------> */
-.timer{
+.timer {
   color: red;
 }
 
 
 /* <----------------------------------DASHBOARD CSS--------------------------------------> */
 
-.user{
+.user {
   width: 80px;
   height: auto;
 }
 
-.upload_button{
+.upload_button {
   height: 95%;
+  margin-left: 10px;
 }
 
 .dash-card {
   width: 450px;
-  box-sizing: border-box;
   padding: 2em;
   border-radius: 20px;
   color: white;
@@ -75,40 +76,104 @@ label {
 
 .ridge {
   /* background: rgb(217, 217, 217); */
-  background: rgb(33,71,91);
-background: linear-gradient(24deg, rgb(102, 172, 208) 0%, rgb(137, 176, 202), 24%, rgb(151, 214, 228) 55%, rgb(104, 172, 187) 99%);
+  background: rgb(33, 71, 91);
+  background: linear-gradient(24deg, rgb(102, 172, 208) 0%, rgb(137, 176, 202), 24%, rgb(151, 214, 228) 55%, rgb(104, 172, 187) 99%);
   border-width: 10px;
-  border-style: ridge; 
+  border-style: ridge;
   Border-color: white;
-  }
+}
+
+.card {
+  /* line-height: 25px; */
+  /* float: left; */
+  /* margin-right: 1em; */
+  width: 400px;
+  height: 230px;
+  box-shadow: 0px 30px 25px -25px rgba(0, 0, 0, 0.5);
+  /* padding: 2em; */
+  border: white 1px solid;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  margin: 60px 0;
+  text-align: left;
+  /* box-shadow: 1.5px 2px 4px rgb(48 48 48); */
+}
+
+.top {
+  position: relative;
+  left: -13px;
+  border-radius: 25px 25px 0 0;
+  height: 100px;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.249);
+  /* backdrop-filter: blur(2px); */
+  /* position: relative; */
+  /* left: 0; */
+  /* top: -31px; */
+  /* display: flex; */
+}
+
+.name {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.793);
+  font-weight: bold;
+  margin: 9% 20px 0;
+  /* padding-top: 30px; */
+  position: relative;
+  display: flex;
+  flex: 1;
+}
+
+.circle-img {
+  border-radius: 50%;
+  border: 7px solid #fff;
+  position: relative;
+  left: 250px;
+  bottom: 25px;
+  width: 110px;
+  z-index: +1;
+}
+
+.bottom {
+  /* margin-top: -30px; */
+  margin-left: 20px;
+}
+
+.info {
+
+  margin: 20px 0;
+  color: rgba(255, 255, 255, 0.821);
+  font-weight: normal;
+}
 
 .dash-card.grey {
-  background:linear-gradient(135deg, #6aa1a9 0%,#485260 100%);
+  background: linear-gradient(135deg, #6aa1a9 0%, #485260 100%);
 }
 
 .dash-card.metallic {
-  background:linear-gradient(135deg, #a2b6df 0%,#33569b 100%);
+  background: linear-gradient(135deg, #a2b6df 0%, #33569b 100%);
 }
 
 .dash-card.purple {
-  background:linear-gradient(135deg, #dfaffd 0%,#4e6ffb 100%);
+  background: linear-gradient(135deg, #dfaffd 0%, #4e6ffb 100%);
 }
 
 .dash-card.green {
   background: linear-gradient(150deg, #39ef74, #101bbe 100%);
 }
-  
-  /*DASHBOARD BG FIX*/
-  section {
-    height: 100vh;
-    padding: 80px 0;
-    background-size: cover;
-  }
 
-  /* .tab{
+/*DASHBOARD BG FIX*/
+section {
+  height: 100vh;
+  padding: 80px 0;
+  background-size: cover;
+}
+
+/* .tab{
     overflow-y: scroll;
   } */
 
-  .tableBox{
-    margin-top: -5px;
-  }
+.tableBox {
+  margin-top: -80px;
+}

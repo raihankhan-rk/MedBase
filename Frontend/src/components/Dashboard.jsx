@@ -2,27 +2,39 @@ import React from "react";
 import Data from "../data.json";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import User from "../user.png";
+// import User from "../user.png";
 import NavBar from "./MedNav.jsx"
 
 export default function Dashboard() {
   return (
     <section>
-      {<NavBar/>}
+      {<NavBar />}
       <div className="container">
         <h1 className="heading_dashboard fw-bold mb-4 text-center">
           Dashboard
         </h1>
         <div className="row justify-content-center align-items-center position-float">
-          <div className="dash-card green">
-            <div className="d-flex flex-col justify-content-between">
+          <div className="card">
+            {/* <div className="d-flex flex-col justify-content-between">
               <h1>Test User</h1>
               <img src={User} className="user rounded flex" alt="user" />
             </div>
             <h4 className="my-4">UID: XXXX-XXXX-XXXX</h4>
-            <h4 className="my-3">Phone: +91 9876543210</h4>
+            <h4 className="my-3">Phone: +91 9876543210</h4> */}
+            <div className="top">
+              <h2 className="name">Risavdeb Poddar</h2>
+              <img className="circle-img"
+                src="https://cdn-icons-png.flaticon.com/512/219/219986.png"
+                alt="avatar_img"
+              />
+            </div>
+            <div className="bottom">
+              <p className="info">XXXX XXXX XXXX</p>
+              <p className="info">+91 8961675822</p>
+            </div>
           </div>
         </div>
+        
         <div
           className="tableBox"
           style={{
@@ -37,15 +49,15 @@ export default function Dashboard() {
             <thead>
               <tr>
                 <th colSpan="4">
-                  <h6 className="text-center">Upload Documents</h6>
-                  <div className="d-flex bd-highlight">
+                  <h6 className="text-center fw-bold">Upload Documents</h6>
+                  <div className="d-flex bd-highlight mx-4">
                     <Form.Group controlId="formFile" className="flex-grow-1">
-                      <Form.Control type="file"/>
+                      <Form.Control type="file" />
                     </Form.Group>
-                    <Button variant="primary" className="upload_button mr-5 ml-2">Upload</Button>{" "}
+                    <Button variant="primary" className="upload_button">Upload</Button>{" "}
                   </div>
                   <h6 className="text-center">. . .</h6>
-                </th> 
+                </th>
               </tr>
             </thead>
             <thead>
@@ -90,7 +102,7 @@ export default function Dashboard() {
                       >
                         <button
                           type="button"
-                          className="btn mx-lg-4 btn-success btn-sm"
+                          className="btn mx-lg-4 mx-md-2 btn-success btn-sm"
                         >
                           Download
                         </button>
